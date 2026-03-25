@@ -1,0 +1,509 @@
+{
+	"info": {
+		"_postman_id": "tech-test-api-collection",
+		"name": "Tech Test API Collection",
+		"description": "API collection for the Tech Test Spring Boot application with transaction processing endpoints.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Transaction Processing",
+			"item": [
+				{
+					"name": "Submit Transaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"transactionId\": \"TXN-12345678\",\n    \"customerId\": \"CUST-12345\",\n    \"storeId\": \"STORE-001\",\n    \"tillId\": \"TILL-1\",\n    \"paymentMethod\": \"card\",\n    \"totalAmount\": 25.50,\n    \"currency\": \"GBP\",\n    \"timestamp\": \"2025-06-27T12:00:00.000Z\",\n    \"items\": [\n        {\n            \"productName\": \"Milk\",\n            \"productCode\": \"MILK001\",\n            \"unitPrice\": 2.50,\n            \"quantity\": 2,\n            \"category\": \"Dairy\"\n        },\n        {\n            \"productName\": \"Bread\",\n            \"productCode\": \"BREAD001\",\n            \"unitPrice\": 1.20,\n            \"quantity\": 1,\n            \"category\": \"Bakery\"\n        },\n        {\n            \"productName\": \"Coffee\",\n            \"productCode\": \"COFFEE001\",\n            \"unitPrice\": 3.99,\n            \"quantity\": 5,\n            \"category\": \"Beverages\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/transactions/submit",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"submit"
+							]
+						},
+						"description": "Submit a transaction to the legacy REST API"
+					},
+					"response": [
+						{
+							"name": "Transaction Submitted",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"transactionId\": \"TXN-12345678\",\n    \"customerId\": \"CUST-12345\",\n    \"storeId\": \"STORE-001\",\n    \"tillId\": \"TILL-1\",\n    \"paymentMethod\": \"card\",\n    \"totalAmount\": 25.50,\n    \"currency\": \"GBP\",\n    \"timestamp\": \"2025-06-27T12:00:00.000Z\",\n    \"items\": [\n        {\n            \"productName\": \"Milk\",\n            \"productCode\": \"MILK001\",\n            \"unitPrice\": 2.50,\n            \"quantity\": 2,\n            \"category\": \"Dairy\"\n        },\n        {\n            \"productName\": \"Bread\",\n            \"productCode\": \"BREAD001\",\n            \"unitPrice\": 1.20,\n            \"quantity\": 1,\n            \"category\": \"Bakery\"\n        },\n        {\n            \"productName\": \"Coffee\",\n            \"productCode\": \"COFFEE001\",\n            \"unitPrice\": 3.99,\n            \"quantity\": 5,\n            \"category\": \"Beverages\"\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/transactions/submit",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"submit"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transactionId\": \"TXN-12345678\",\n    \"status\": \"success\",\n    \"message\": \"Transaction submitted successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Transaction by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/transactions/TXN-12345678",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"TXN-12345678"
+							]
+						},
+						"description": "Retrieve a specific transaction by its ID"
+					},
+					"response": [
+						{
+							"name": "Transaction Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/transactions/TXN-12345678",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"TXN-12345678"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transactionId\": \"TXN-12345678\",\n    \"customerId\": \"CUST-12345\",\n    \"storeId\": \"STORE-001\",\n    \"tillId\": \"TILL-1\",\n    \"paymentMethod\": \"card\",\n    \"totalAmount\": 25.50,\n    \"currency\": \"GBP\",\n    \"timestamp\": \"2025-06-27T12:00:00.000Z\",\n    \"items\": [\n        {\n            \"productName\": \"Milk\",\n            \"productCode\": \"MILK001\",\n            \"unitPrice\": 2.50,\n            \"quantity\": 2,\n            \"category\": \"Dairy\"\n        },\n        {\n            \"productName\": \"Bread\",\n            \"productCode\": \"BREAD001\",\n            \"unitPrice\": 1.20,\n            \"quantity\": 1,\n            \"category\": \"Bakery\"\n        },\n        {\n            \"productName\": \"Coffee\",\n            \"productCode\": \"COFFEE001\",\n            \"unitPrice\": 3.99,\n            \"quantity\": 5,\n            \"category\": \"Beverages\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Transactions by Store",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/transactions/store/STORE-001",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"store",
+								"STORE-001"
+							]
+						},
+						"description": "Retrieve all transactions for a specific store"
+					}
+				},
+				{
+					"name": "Get Transactions by Till",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/transactions/till/TILL-1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"till",
+								"TILL-1"
+							]
+						},
+						"description": "Retrieve all transactions for a specific till"
+					}
+				},
+				{
+					"name": "Get Transactions by Date Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/transactions/date-range?startDate=2025-06-27T00:00:00Z&endDate=2025-06-27T23:59:59Z",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"date-range"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-06-27T00:00:00Z"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-06-27T23:59:59Z"
+								}
+							]
+						},
+						"description": "Retrieve transactions within a specific date range"
+					}
+				},
+				{
+					"name": "Get Transaction Statistics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/transactions/stats/STORE-001",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"stats",
+								"STORE-001"
+							]
+						},
+						"description": "Get transaction statistics for a store (contains a bug in average calculation)"
+					},
+					"response": [
+						{
+							"name": "Statistics with Bug",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/transactions/stats/STORE-001",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"stats",
+										"STORE-001"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"storeId\": \"STORE-001\",\n    \"totalTransactions\": 10,\n    \"totalAmount\": 100.0,\n    \"averageAmount\": 10.0,\n    \"calculationNote\": \"Average calculated as total amount divided by transaction count\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Transactions by Customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/transactions/customer/CUST-12345",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"customer",
+								"CUST-12345"
+							]
+						},
+						"description": "Retrieve all transactions for a specific customer"
+					}
+				},
+				{
+					"name": "Create Sample Transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/transactions/sample",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"sample"
+							]
+						},
+						"description": "Create a sample transaction for testing"
+					},
+					"response": [
+						{
+							"name": "Sample Transaction Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/transactions/sample",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"sample"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Sample transaction created\",\n    \"transaction\": {\n        \"transactionId\": \"TXN-ABC12345\",\n        \"customerId\": \"CUST-12345\",\n        \"storeId\": \"STORE-001\",\n        \"tillId\": \"TILL-1\",\n        \"paymentMethod\": \"card\",\n        \"totalAmount\": 7.69,\n        \"currency\": \"GBP\",\n        \"timestamp\": \"2024-01-15T10:00:00Z\",\n        \"items\": [\n            {\n                \"productName\": \"Milk\",\n                \"productCode\": \"MILK001\",\n                \"unitPrice\": 2.50,\n                \"quantity\": 1,\n                \"category\": \"Dairy\"\n            },\n            {\n                \"productName\": \"Bread\",\n                \"productCode\": \"BREAD001\",\n                \"unitPrice\": 1.20,\n                \"quantity\": 1,\n                \"category\": \"Bakery\"\n            },\n            {\n                \"productName\": \"Coffee\",\n                \"productCode\": \"COFFEE001\",\n                \"unitPrice\": 3.99,\n                \"quantity\": 1,\n                \"category\": \"Beverages\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Transaction Service Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/transactions/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"health"
+							]
+						},
+						"description": "Health check for the transaction service"
+					},
+					"response": [
+						{
+							"name": "Health Status",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/transactions/health",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"health"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"UP\",\n    \"service\": \"transaction-service\",\n    \"timestamp\": \"1705312800000\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Transaction processing endpoints for retail transaction management"
+		},
+
+		{
+			"name": "Monitoring & Observability",
+			"item": [
+				{
+					"name": "Actuator Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						},
+						"description": "Spring Boot actuator health check with detailed status"
+					},
+					"response": [
+						{
+							"name": "Health Status",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/actuator/health",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"UP\",\n    \"components\": {\n        \"db\": {\n            \"status\": \"UP\",\n            \"details\": {\n                \"database\": \"PostgreSQL\",\n                \"validationQuery\": \"isValid()\"\n            }\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Prometheus Metrics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/actuator/prometheus",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"prometheus"
+							]
+						},
+						"description": "Get all Prometheus metrics including custom business metrics"
+					}
+				},
+				{
+					"name": "Actuator Metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/metrics",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"metrics"
+							]
+						},
+						"description": "List all available metrics"
+					}
+				}
+			],
+			"description": "Monitoring and observability endpoints for health checks and metrics"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Set base URL if not already set",
+					"if (!pm.environment.get('base_url')) {",
+					"    pm.environment.set('base_url', 'http://localhost:8080');",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Basic response time test",
+					"pm.test('Response time is less than 2000ms', function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+					"});",
+					"",
+					"// Status code test",
+					"pm.test('Status code is 200', function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+} 

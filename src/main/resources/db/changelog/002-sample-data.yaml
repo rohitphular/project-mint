@@ -1,0 +1,336 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006-insert-sample-transactions
+      author: tech-test
+      changes:
+        - insert:
+            tableName: transactions
+            columns:
+              - column:
+                  name: transaction_id
+                  value: "TXN-SAMPLE-001"
+              - column:
+                  name: customer_id
+                  value: "CUST-12345"
+              - column:
+                  name: store_id
+                  value: "STORE-001"
+              - column:
+                  name: till_id
+                  value: "TILL-001"
+              - column:
+                  name: payment_method
+                  value: "card"
+              - column:
+                  name: total_amount
+                  value: "7.69"
+              - column:
+                  name: currency
+                  value: "GBP"
+              - column:
+                  name: transaction_timestamp
+                  valueDate: "2024-01-15 10:00:00"
+              - column:
+                  name: created_at
+                  valueDate: "2024-01-15 10:00:00"
+              - column:
+                  name: status
+                  value: "COMPLETED"
+        - insert:
+            tableName: transactions
+            columns:
+              - column:
+                  name: transaction_id
+                  value: "TXN-SAMPLE-002"
+              - column:
+                  name: customer_id
+                  value: "CUST-12346"
+              - column:
+                  name: store_id
+                  value: "STORE-001"
+              - column:
+                  name: till_id
+                  value: "TILL-002"
+              - column:
+                  name: payment_method
+                  value: "cash"
+              - column:
+                  name: total_amount
+                  value: "7.69"
+              - column:
+                  name: currency
+                  value: "GBP"
+              - column:
+                  name: transaction_timestamp
+                  valueDate: "2024-01-15 11:00:00"
+              - column:
+                  name: created_at
+                  valueDate: "2024-01-15 11:00:00"
+              - column:
+                  name: status
+                  value: "COMPLETED"
+        - insert:
+            tableName: transactions
+            columns:
+              - column:
+                  name: transaction_id
+                  value: "TXN-SAMPLE-003"
+              - column:
+                  name: customer_id
+                  value: "CUST-12347"
+              - column:
+                  name: store_id
+                  value: "STORE-001"
+              - column:
+                  name: till_id
+                  value: "TILL-001"
+              - column:
+                  name: payment_method
+                  value: "card"
+              - column:
+                  name: total_amount
+                  value: "7.69"
+              - column:
+                  name: currency
+                  value: "GBP"
+              - column:
+                  name: transaction_timestamp
+                  valueDate: "2024-01-15 12:00:00"
+              - column:
+                  name: created_at
+                  valueDate: "2024-01-15 12:00:00"
+              - column:
+                  name: status
+                  value: "COMPLETED"
+      rollback:
+        - delete:
+            tableName: transactions
+            where: "transaction_id IN ('TXN-SAMPLE-001', 'TXN-SAMPLE-002', 'TXN-SAMPLE-003')"
+
+  - changeSet:
+      id: 007-insert-sample-transaction-items
+      author: tech-test
+      changes:
+        # Items for TXN-SAMPLE-001
+        - insert:
+            tableName: transaction_items
+            columns:
+              - column:
+                  name: transaction_id
+                  valueComputed: "(SELECT id FROM transactions WHERE transaction_id = 'TXN-SAMPLE-001')"
+              - column:
+                  name: product_name
+                  value: "Milk"
+              - column:
+                  name: product_code
+                  value: "MILK001"
+              - column:
+                  name: unit_price
+                  value: "2.50"
+              - column:
+                  name: quantity
+                  value: "1"
+              - column:
+                  name: total_price
+                  value: "2.50"
+              - column:
+                  name: category
+                  value: "Dairy"
+        - insert:
+            tableName: transaction_items
+            columns:
+              - column:
+                  name: transaction_id
+                  valueComputed: "(SELECT id FROM transactions WHERE transaction_id = 'TXN-SAMPLE-001')"
+              - column:
+                  name: product_name
+                  value: "Bread"
+              - column:
+                  name: product_code
+                  value: "BREAD001"
+              - column:
+                  name: unit_price
+                  value: "1.20"
+              - column:
+                  name: quantity
+                  value: "1"
+              - column:
+                  name: total_price
+                  value: "1.20"
+              - column:
+                  name: category
+                  value: "Bakery"
+        - insert:
+            tableName: transaction_items
+            columns:
+              - column:
+                  name: transaction_id
+                  valueComputed: "(SELECT id FROM transactions WHERE transaction_id = 'TXN-SAMPLE-001')"
+              - column:
+                  name: product_name
+                  value: "Coffee"
+              - column:
+                  name: product_code
+                  value: "COFFEE001"
+              - column:
+                  name: unit_price
+                  value: "3.99"
+              - column:
+                  name: quantity
+                  value: "1"
+              - column:
+                  name: total_price
+                  value: "3.99"
+              - column:
+                  name: category
+                  value: "Beverages"
+        # Items for TXN-SAMPLE-002 (same items)
+        - insert:
+            tableName: transaction_items
+            columns:
+              - column:
+                  name: transaction_id
+                  valueComputed: "(SELECT id FROM transactions WHERE transaction_id = 'TXN-SAMPLE-002')"
+              - column:
+                  name: product_name
+                  value: "Milk"
+              - column:
+                  name: product_code
+                  value: "MILK001"
+              - column:
+                  name: unit_price
+                  value: "2.50"
+              - column:
+                  name: quantity
+                  value: "1"
+              - column:
+                  name: total_price
+                  value: "2.50"
+              - column:
+                  name: category
+                  value: "Dairy"
+        - insert:
+            tableName: transaction_items
+            columns:
+              - column:
+                  name: transaction_id
+                  valueComputed: "(SELECT id FROM transactions WHERE transaction_id = 'TXN-SAMPLE-002')"
+              - column:
+                  name: product_name
+                  value: "Bread"
+              - column:
+                  name: product_code
+                  value: "BREAD001"
+              - column:
+                  name: unit_price
+                  value: "1.20"
+              - column:
+                  name: quantity
+                  value: "1"
+              - column:
+                  name: total_price
+                  value: "1.20"
+              - column:
+                  name: category
+                  value: "Bakery"
+        - insert:
+            tableName: transaction_items
+            columns:
+              - column:
+                  name: transaction_id
+                  valueComputed: "(SELECT id FROM transactions WHERE transaction_id = 'TXN-SAMPLE-002')"
+              - column:
+                  name: product_name
+                  value: "Coffee"
+              - column:
+                  name: product_code
+                  value: "COFFEE001"
+              - column:
+                  name: unit_price
+                  value: "3.99"
+              - column:
+                  name: quantity
+                  value: "1"
+              - column:
+                  name: total_price
+                  value: "3.99"
+              - column:
+                  name: category
+                  value: "Beverages"
+        # Items for TXN-SAMPLE-003 (same items)
+        - insert:
+            tableName: transaction_items
+            columns:
+              - column:
+                  name: transaction_id
+                  valueComputed: "(SELECT id FROM transactions WHERE transaction_id = 'TXN-SAMPLE-003')"
+              - column:
+                  name: product_name
+                  value: "Milk"
+              - column:
+                  name: product_code
+                  value: "MILK001"
+              - column:
+                  name: unit_price
+                  value: "2.50"
+              - column:
+                  name: quantity
+                  value: "1"
+              - column:
+                  name: total_price
+                  value: "2.50"
+              - column:
+                  name: category
+                  value: "Dairy"
+        - insert:
+            tableName: transaction_items
+            columns:
+              - column:
+                  name: transaction_id
+                  valueComputed: "(SELECT id FROM transactions WHERE transaction_id = 'TXN-SAMPLE-003')"
+              - column:
+                  name: product_name
+                  value: "Bread"
+              - column:
+                  name: product_code
+                  value: "BREAD001"
+              - column:
+                  name: unit_price
+                  value: "1.20"
+              - column:
+                  name: quantity
+                  value: "1"
+              - column:
+                  name: total_price
+                  value: "1.20"
+              - column:
+                  name: category
+                  value: "Bakery"
+        - insert:
+            tableName: transaction_items
+            columns:
+              - column:
+                  name: transaction_id
+                  valueComputed: "(SELECT id FROM transactions WHERE transaction_id = 'TXN-SAMPLE-003')"
+              - column:
+                  name: product_name
+                  value: "Coffee"
+              - column:
+                  name: product_code
+                  value: "COFFEE001"
+              - column:
+                  name: unit_price
+                  value: "3.99"
+              - column:
+                  name: quantity
+                  value: "1"
+              - column:
+                  name: total_price
+                  value: "3.99"
+              - column:
+                  name: category
+                  value: "Beverages"
+      rollback:
+        - delete:
+            tableName: transaction_items
+            where: "transaction_id IN (SELECT id FROM transactions WHERE transaction_id IN ('TXN-SAMPLE-001', 'TXN-SAMPLE-002', 'TXN-SAMPLE-003'))" 

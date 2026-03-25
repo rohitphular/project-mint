@@ -1,0 +1,193 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-transactions-table
+      author: tech-test
+      changes:
+        - createTable:
+            tableName: transactions
+            columns:
+              - column:
+                  name: id
+                  type: bigserial
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: transaction_id
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: customer_id
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: store_id
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: till_id
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: payment_method
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_amount
+                  type: decimal(10,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+                    defaultValue: "GBP"
+              - column:
+                  name: transaction_timestamp
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+                    defaultValue: "COMPLETED"
+      rollback:
+        - dropTable:
+            tableName: transactions
+
+  - changeSet:
+      id: 004-create-transaction-items-table
+      author: tech-test
+      changes:
+        - createTable:
+            tableName: transaction_items
+            columns:
+              - column:
+                  name: id
+                  type: bigserial
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: transaction_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_transaction_items_transaction
+                    references: transactions(id)
+              - column:
+                  name: product_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: product_code
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: unit_price
+                  type: decimal(10,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_price
+                  type: decimal(10,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+      rollback:
+        - dropTable:
+            tableName: transaction_items
+
+  - changeSet:
+      id: 005-create-transaction-indexes
+      author: tech-test
+      changes:
+        - createIndex:
+            tableName: transactions
+            indexName: idx_transactions_store_id
+            columns:
+              - column:
+                  name: store_id
+        - createIndex:
+            tableName: transactions
+            indexName: idx_transactions_customer_id
+            columns:
+              - column:
+                  name: customer_id
+        - createIndex:
+            tableName: transactions
+            indexName: idx_transactions_till_id
+            columns:
+              - column:
+                  name: till_id
+        - createIndex:
+            tableName: transactions
+            indexName: idx_transactions_timestamp
+            columns:
+              - column:
+                  name: transaction_timestamp
+        - createIndex:
+            tableName: transactions
+            indexName: idx_transactions_payment_method
+            columns:
+              - column:
+                  name: payment_method
+        - createIndex:
+            tableName: transaction_items
+            indexName: idx_transaction_items_transaction_id
+            columns:
+              - column:
+                  name: transaction_id
+        - createIndex:
+            tableName: transaction_items
+            indexName: idx_transaction_items_product_code
+            columns:
+              - column:
+                  name: product_code
+      rollback:
+        - dropIndex:
+            tableName: transactions
+            indexName: idx_transactions_store_id
+        - dropIndex:
+            tableName: transactions
+            indexName: idx_transactions_customer_id
+        - dropIndex:
+            tableName: transactions
+            indexName: idx_transactions_till_id
+        - dropIndex:
+            tableName: transactions
+            indexName: idx_transactions_timestamp
+        - dropIndex:
+            tableName: transactions
+            indexName: idx_transactions_payment_method
+        - dropIndex:
+            tableName: transaction_items
+            indexName: idx_transaction_items_transaction_id
+        - dropIndex:
+            tableName: transaction_items
+            indexName: idx_transaction_items_product_code 
