@@ -61,34 +61,34 @@ services:
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
 
   # Till Simulator - Simulates supermarket tills calling the legacy REST API
-  till-simulator:
-    build:
-      context: ./till-simulator
-      dockerfile: Dockerfile
-    container_name: tech-test-till-simulator
-    environment:
-      API_BASE_URL: http://host.docker.internal:8080
-      SIMULATION_INTERVAL_SECONDS: 1
-    depends_on:
-      - postgres
-    restart: unless-stopped
-    networks:
-      - default
+#  till-simulator:
+#    build:
+#      context: ./till-simulator
+#      dockerfile: Dockerfile
+#    container_name: tech-test-till-simulator
+#    environment:
+#      API_BASE_URL: http://host.docker.internal:8080
+#      SIMULATION_INTERVAL_SECONDS: 1
+#    depends_on:
+#      - postgres
+#    restart: unless-stopped
+#    networks:
+#      - default
 
   # Kafka Producer - Simulates external tills sending transaction events to Kafka
-  kafka-producer:
-    build:
-      context: ./kafka-producer
-      dockerfile: Dockerfile
-    container_name: tech-test-kafka-producer
-    environment:
-      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
-      MESSAGES_PER_SECOND: 5
-    depends_on:
-      - kafka
-    restart: unless-stopped
-    networks:
-      - default
+#  kafka-producer:
+#    build:
+#      context: ./kafka-producer
+#      dockerfile: Dockerfile
+#    container_name: tech-test-kafka-producer
+#    environment:
+#      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+#      MESSAGES_PER_SECOND: 5
+#    depends_on:
+#      - kafka
+#    restart: unless-stopped
+#    networks:
+#      - default
 
   # Observability Stack
   prometheus:

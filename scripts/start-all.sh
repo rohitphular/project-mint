@@ -6,7 +6,7 @@ echo "🚀 Starting Tech Test Infrastructure..."
 
 # Start Docker Compose services
 echo "📦 Starting Docker containers..."
-docker-compose up -d
+docker compose up -d
 
 # Wait for services to be ready
 echo "⏳ Waiting for services to start..."
